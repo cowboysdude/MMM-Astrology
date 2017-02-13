@@ -1,2 +1,2 @@
-# MMM-Astrology
-Astrology module for MM2
+# Astrology
+Horoscopes for daily, weekly, monthly or yearly!  For the MagicMirror2
