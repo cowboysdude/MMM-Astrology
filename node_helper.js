@@ -6,14 +6,10 @@
     */
 const NodeHelper = require('node_helper');
 const request = require('request');
-const fs = require('fs');
 const parser = require('xml2js').parseString;
-
-
+const fs = require('fs');
 
 module.exports = NodeHelper.create({
-      
-     
 	  
     start: function() {
     	console.log("Starting module: " + this.name);
@@ -29,27 +25,32 @@ module.exports = NodeHelper.create({
             }
         }
     },
-    socketNotificationReceived: function(notification, payload) {
-        if(notification === 'CONFIG'){
-            this.config = payload;
-            this.getAstrology();
-        }
-    },
+    //socketNotificationReceived: function(notification, payload) {
+    //    if(notification === 'CONFIG'){
+    //    	console.log("got config");
+    //        this.config = payload;
+    //        this.getAstrology();
+    //    }
+  //  },
     
-      getUrl: function() {
-     	var hScope = this.config.hScope;
-        var starSign = this.config.starSign;
-      if (hScope === "daily") {
-	  	url: "http://www.findyourfate.com/rss/dailyhoroscope-feed.php?sign="+ starSign +"&id=45";
-	  } else if (hScope === "weekly" || hscope === "monthly") {
-	 	url: "http://www.findyourfate.com/rss/"+ hscope +"-horoscope-feed.php?sign="+ starSign +"&id=45";
-	  } else (hScope === "yearly") 
-	  	url: "http://www.findyourfate.com/rss/"+ hscope +"-horoscope.asp?sign="+ starSign +"&id=45";
+    getUrl: function() {
+       var hScope = this.config.hScope;
+       var starSign = this.config.starSign;
+      if (this.config.hScope === "daily") {
+	  	url = "http://www.findyourfate.com/rss/dailyhoroscope-feed.php?sign="+ this.config.starSign +"&id=45";
+	  	return;
+	  } else if (this.config.hScope === "weekly" || this.config.hScope === "monthly") {
+	 	url = "http://www.findyourfate.com/rss/"+ this.config.hScope +"-horoscope-feed.php?sign="+ this.config.starSign +"&id=45";
+	 	return;
+	  } else (this.config.hScope === "yearly") 
+	  	url = "http://www.findyourfate.com/rss/"+ this.config.hScope +"-horoscope.asp?sign="+ this.config.starSign +"&id=45";
+	  	return;
 	  },
     
     getAstrology: function(url) {
+    	console.log(url);
     	request({ 
-    	          url: getUrl(), 
+    	          url: this.getUrl(), 
     	          method: 'GET' 
     	        }, (error, response, body) => {
             if (!error && response.statusCode === 200) {
@@ -70,6 +71,7 @@ module.exports = NodeHelper.create({
             }
         });
     },
+
 
     fileWrite: function() {
         fs.writeFile(this.path, JSON.stringify(this.astro), function(err) {
