@@ -9,12 +9,14 @@ const request = require('request');
 const fs = require('fs');
 const parser = require('xml2js').parseString;
 
+
+
 module.exports = NodeHelper.create({
-
-//urls: { url: "http://www.findyourfate.com/rss/dailyhoroscope-feed.php?sign=Leo&id=45"},
-
-
+      
+     
+	  
     start: function() {
+    	console.log("Starting module: " + this.name);
         this.astro = {
             timestamp: null,
             data: null
@@ -25,23 +27,39 @@ module.exports = NodeHelper.create({
             if (temp.timestamp === this.getDate()) {
                 this.astro = temp;
             }
-            //console.log(temp);
         }
-
     },
-
+    socketNotificationReceived: function(notification, payload) {
+        if(notification === 'CONFIG'){
+            this.config = payload;
+            this.getAstrology();
+        }
+    },
+    
+      getUrl: function() {
+     	var hScope = this.config.hScope;
+        var starSign = this.config.starSign;
+      if (hScope === "daily") {
+	  	url: "http://www.findyourfate.com/rss/dailyhoroscope-feed.php?sign="+ starSign +"&id=45";
+	  } else if (hScope === "weekly" || hscope === "monthly") {
+	 	url: "http://www.findyourfate.com/rss/"+ hscope +"-horoscope-feed.php?sign="+ starSign +"&id=45";
+	  } else (hScope === "yearly") 
+	  	url: "http://www.findyourfate.com/rss/"+ hscope +"-horoscope.asp?sign="+ starSign +"&id=45";
+	  },
+    
     getAstrology: function(url) {
-    	request({url: "http://www.findyourfate.com/rss/dailyhoroscope-feed.php?sign=Leo&id=45"}, (error, response, body) => {
-            if (response.statusCode === 200) {
+    	request({ 
+    	          url: getUrl(), 
+    	          method: 'GET' 
+    	        }, (error, response, body) => {
+            if (!error && response.statusCode === 200) {
                 parser(body, (err, result)=> {
-                    if(err) {
-                        console.log(err);
-                    } else if(result.hasOwnProperty('rss')){
-                        var result = parser(result.rss.channel);
+                    if(result.hasOwnProperty('rss')){
+                        var result = JSON.parse(JSON.stringify(result.rss.channel[0].item[0]));
                         this.sendSocketNotification("ASTRO_RESULT", {Astro: result});
                         this.astro.timestamp = this.getDate();
-                         this.astro.data = result;
-                         this.fileWrite();
+                        this.astro.data = result;
+                        this.fileWrite();
                         return;
                     } else {
                         console.log("Error no data");
@@ -70,7 +88,7 @@ module.exports = NodeHelper.create({
     socketNotificationReceived: function(notification, payload) {
         if (notification === 'GET_ASTRO') {
             if (this.astro.timestamp === this.getDate() && this.astro !== null) {
-                this.sendSocketNotification('ASTRO_RESULT', this.astro);
+                this.sendSocketNotification('ASTRO_RESULT', this.astro.data);
             } else {
                 this.getAstrology(payload);
             }
