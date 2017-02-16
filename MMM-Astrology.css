@@ -4,24 +4,36 @@
 .MMM-Astrology .header {
 	text-align: center;
 	font-family: 'Oswald', sans-serif;
-	font-size: 20px;
+	font-size: 14px;
+	color: #94e7e9;
 }
 .MMM-Astrology .content {
   width: 100%;
   background-position: 11px 0;
   background-repeat: no-repeat;
-  color: #a9a356;
-}
-.MMM-Astrology .header {
-	color: #bc7b23;
+  color: #fe0127;
 }
 .MMM-Astrology .imgDes {
-  width: 15%;
-  height: 15%;
-  margin-left: 10px;
-  margin-right: 10px;
+  width: 16%;
+  height: 16%;
+  margin-left: 5px;
+  margin-right: 5px;
   overflow: hidden;
   float: left;
+}
+.MMM-Astrology .imgDesInv {
+  width: 16%;
+  height: 16%;
+  margin-left: 5px;
+  margin-right: 5px;
+  overflow: hidden;
+  float: left;
+  color: #fff;
+   -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+.MMM-Astrology .wrapper {
+	text-align: justify
 }
 .MMM-Astrology .imgDes p {
   font-size: 12px;
