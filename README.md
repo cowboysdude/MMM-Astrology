@@ -19,7 +19,7 @@ Config.js -- Example config...
       Config options:
       StarSign: Must be entered like this:  Leo, Aries, Pisces, etc.. 
       hScope: daily, weekly, monthly or yearly {CAUTION:  Yearly horoscopes are VERY large in most cases will take up entire screen!}
-      maxWidth:  default is 400px;  ->  In this config it is set to 200px. 
+      maxWidth:  default is 400px;  ->  In this config it is set to 350px. 
       
       See screen shots...     
 
