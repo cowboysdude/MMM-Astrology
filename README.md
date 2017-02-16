@@ -25,11 +25,11 @@ Config.js -- Example config...
 
          {
 			module: 'MMM-Astrology',
-			position: 'top_right',
+			position: 'top_center',
 			config: {
 				starSign: "Pisces",
 				hScope: "daily",
-				maxWidth: "200px",
+				maxWidth: "350px",
 			}
 		},
 
