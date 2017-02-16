@@ -1,4 +1,4 @@
- /* Magic Mirror
+  /* Magic Mirror
     * Module: MMM-Astrology
     *
     * By cowboysdude
@@ -9,16 +9,16 @@ Module.register("MMM-Astrology", {
 
        // Module config defaults.
        defaults: {
-           updateInterval: 120000, // every 10 minutes
-           animationSpeed: 1000,
-           initialLoadDelay: 1130, // 0 seconds delay
-           retryDelay: 2500,
-           starSing: "Leo",
-	   typeScope: "",
-           header: "",
+           updateInterval: 60*1000, // every 10 minutes
+           animationSpeed: 10,
+           initialLoadDelay: 6950, // 0 seconds delay
+           retryDelay: 1500,
+           starSign: "Pisces",
+	       hScope: "daily",
            maxWidth: "400px",
+           fadeSpeed: 11,
        },
-
+       
        // Define required scripts.
        getScripts: function() {
            return ["moment.js"];
@@ -31,61 +31,70 @@ Module.register("MMM-Astrology", {
        // Define start sequence.
        start: function() {
            Log.info("Starting module: " + this.name);
-
+           
            // Set locale.
-           moment.locale(config.language);
-
+           this.url = this.getUrl();
            this.today = "";
-           this.astro = {};
-           this.url = "http://www.findyourfate.com/rss/dailyhoroscope-feed.php?sign=Leo&id=45";        
            this.scheduleUpdate();
        },
 
       getDom: function() {
 
          var astro = this.astro;
-
+         var starSign = this.config.starSign;
+         
          var wrapper = document.createElement("div");
          wrapper.className = "wrapper";
          wrapper.style.maxWidth = this.config.maxWidth;
-         
 
          if (!this.loaded) {
-             wrapper.innerHTML = "Mixing ingrediants...";
+         	 wrapper.classList.add("wrapper");        	 
+             wrapper.innerHTML = "Forecasting ...";
              wrapper.className = "bright light small";
              return wrapper;
          }
-         if (this.config.header != "" ){
+        
          var header = document.createElement("header");
          header.className = "header";
          header.innerHTML = astro.title;
          wrapper.appendChild(header);
-		 }
-		 
-         var top = document.createElement("div");
+		
+        var top = document.createElement("div");
          top.classList.add("content");
-
-       
-
-         var title = document.createElement("h3");
-         title.classList.add("small");
-         //title.className = "medium bright";
-         title.innerHTML = astro.title;
-         top.appendChild(title);
-
+         
+         var horoLogo = document.createElement("div");
+         var horoIcon = document.createElement("img");
+         horoIcon.src = this.file("icons/1/" + starSign + ".png");
+         horoIcon.classList.add("imgDesInv");
+         horoLogo.appendChild(horoIcon);
+         top.appendChild(horoLogo);
 
          var des = document.createElement("p");
          des.classList.add("xsmall", "bright");
-         des.innerHTML = "details";
+         des.innerHTML = astro.description;
          top.appendChild(des);
 
          wrapper.appendChild(top);
          return wrapper;
 
      },
-
+     
+     getUrl: function() {
+       var url = null;
+      if (this.config.hScope == "daily") {
+	  url = "http://www.findyourfate.com/rss/dailyhoroscope-feed.php?sign="+ this.config.starSign +"&id=45";
+	} else if (this.config.hScope == "weekly") {
+	  url = "http://www.findyourfate.com/rss/"+ this.config.hScope +"-horoscope-feed.php?sign="+ this.config.starSign +"&id=45";
+	} else if(this.config.hScope == "monthly" || this.config.hScope == "yearly") {
+	  url = "http://www.findyourfate.com/rss/"+ this.config.hScope +"-horoscope.asp?sign="+ this.config.starSign +"&id=45";
+    }
+       else {
+       	console.log("Error can't get url" + response.statusCode);
+    }
+  return url;
+  },
+     
      processAstrology: function(data) {
-         //	console.log(data);
          this.today = data.Today;
          this.astro = data;
          this.loaded = true;
@@ -95,19 +104,17 @@ Module.register("MMM-Astrology", {
          setInterval(() => {
              this.getAstrology();
          }, this.config.updateInterval);
-
          this.getAstrology(this.config.initialLoadDelay);
      },
 
-
      getAstrology: function() {
-         this.sendSocketNotification('GET_ASTRO');
+         this.sendSocketNotification('GET_ASTROLOGY', this.url);
      },
 
      socketNotificationReceived: function(notification, payload) {
-         if (notification === "ASTRO_RESULT") {
+         if (notification === "HOROSCOPE_RESULT") {
              this.processAstrology(payload);
-             this.updateDom(this.config.fadeSpeed);
+             this.updateDom(this.config.animationSpeed);
          }
          this.updateDom(this.config.initialLoadDelay);
      },
