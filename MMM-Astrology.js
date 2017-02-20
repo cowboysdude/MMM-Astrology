@@ -1,4 +1,4 @@
-  /* Magic Mirror
+ /* Magic Mirror
     * Module: MMM-Astrology
     *
     * By cowboysdude
@@ -11,12 +11,12 @@ Module.register("MMM-Astrology", {
        defaults: {
            updateInterval: 60*1000, // every 10 minutes
            animationSpeed: 10,
-           initialLoadDelay: 6950, // 0 seconds delay
+           initialLoadDelay: 875, // 0 seconds delay
            retryDelay: 1500,
-           starSign: "Pisces",
-	       hScope: "daily",
+           starSign: "",
+	       hScope: "",
            maxWidth: "400px",
-           fadeSpeed: 11,
+           fadeSpeed: 7,
        },
        
        // Define required scripts.
@@ -37,9 +37,12 @@ Module.register("MMM-Astrology", {
            this.today = "";
            this.scheduleUpdate();
        },
+       
+       
 
       getDom: function() {
 
+         
          var astro = this.astro;
          var starSign = this.config.starSign;
          
@@ -47,22 +50,22 @@ Module.register("MMM-Astrology", {
          wrapper.className = "wrapper";
          wrapper.style.maxWidth = this.config.maxWidth;
 
-         if (!this.loaded) {
-         	 wrapper.classList.add("wrapper");        	 
-             wrapper.innerHTML = "Forecasting ...";
-             wrapper.className = "bright light small";
-             return wrapper;
-         }
+        // if (!this.loaded) {
+        // 	 wrapper.classList.add("wrapper");        	 
+        //     wrapper.innerHTML = "Forecasting ...";
+        //     wrapper.className = "bright light medium";
+        //     return wrapper;
+        // }
         
          var header = document.createElement("header");
          header.className = "header";
          header.innerHTML = astro.title;
          wrapper.appendChild(header);
 		
-        var top = document.createElement("div");
+         var top = document.createElement("div");
          top.classList.add("content");
          
-         var horoLogo = document.createElement("div");
+         var horoLogo = document.createElement("span");
          var horoIcon = document.createElement("img");
          horoIcon.src = this.file("icons/1/" + starSign + ".png");
          horoIcon.classList.add("imgDesInv");
@@ -81,17 +84,22 @@ Module.register("MMM-Astrology", {
      
      getUrl: function() {
        var url = null;
-      if (this.config.hScope == "daily") {
+       var str = this.config.hScope;
+       var hType = str.toLowerCase();
+       var newSign = this.config.starSign;
+        
+      if (hType == "daily") {
 	  url = "http://www.findyourfate.com/rss/dailyhoroscope-feed.php?sign="+ this.config.starSign +"&id=45";
-	} else if (this.config.hScope == "weekly") {
-	  url = "http://www.findyourfate.com/rss/"+ this.config.hScope +"-horoscope-feed.php?sign="+ this.config.starSign +"&id=45";
-	} else if(this.config.hScope == "monthly" || this.config.hScope == "yearly") {
-	  url = "http://www.findyourfate.com/rss/"+ this.config.hScope +"-horoscope.asp?sign="+ this.config.starSign +"&id=45";
+	} else if (hType == "weekly") {
+	  url = "http://www.findyourfate.com/rss/"+ hType +"-horoscope-feed.php?sign="+ this.config.starSign +"&id=45";
+	} else if(hType == "monthly" || hType == "yearly") {
+	  url = "http://www.findyourfate.com/rss/"+ hType +"-horoscope.asp?sign="+ this.config.starSign +"&id=45";
     }
        else {
-       	console.log("Error can't get url" + response.statusCode);
+       	console.log("Error can't get Horoscope url" + response.statusCode);
     }
   return url;
+   
   },
      
      processAstrology: function(data) {
@@ -99,7 +107,7 @@ Module.register("MMM-Astrology", {
          this.astro = data;
          this.loaded = true;
      },
-
+     
      scheduleUpdate: function() {
          setInterval(() => {
              this.getAstrology();
