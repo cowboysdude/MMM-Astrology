@@ -1,4 +1,4 @@
- /* Magic Mirror
+  /* Magic Mirror
     * Module: MMM-Astrology
     *
     * By cowboysdude
@@ -50,15 +50,15 @@ Module.register("MMM-Astrology", {
          wrapper.className = "wrapper";
          wrapper.style.maxWidth = this.config.maxWidth;
 
-        // if (!this.loaded) {
-        // 	 wrapper.classList.add("wrapper");        	 
-        //     wrapper.innerHTML = "Forecasting ...";
-        //     wrapper.className = "bright light medium";
-        //     return wrapper;
-        // }
+         if (!this.loaded) {
+         	 wrapper.classList.add("wrapper");        	 
+             wrapper.innerHTML = "Forecasting ...";
+             wrapper.className = "bright light small";
+            return wrapper;
+         }
         
          var header = document.createElement("header");
-         header.className = "header";
+         header.classList.add("xsmall", "dimmed");
          header.innerHTML = astro.title;
          wrapper.appendChild(header);
 		
@@ -73,7 +73,7 @@ Module.register("MMM-Astrology", {
          top.appendChild(horoLogo);
 
          var des = document.createElement("p");
-         des.classList.add("xsmall", "bright");
+         des.classList.add("small", "bright");
          des.innerHTML = astro.description;
          top.appendChild(des);
 
