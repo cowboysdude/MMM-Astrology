@@ -76,7 +76,7 @@ Module.register("MMM-Astrology", {
          
          var horoLogo = document.createElement("span");
          var horoIcon = document.createElement("img");
-         horoIcon.src = this.file("icons/1/" + starSign + ".png");
+         horoIcon.src = this.file("icons/" + starSign + ".png");
          horoIcon.classList.add("imgDesInv");
          horoLogo.appendChild(horoIcon);
          top.appendChild(horoLogo);
