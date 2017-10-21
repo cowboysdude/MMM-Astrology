@@ -4,6 +4,8 @@
   "description": "",
   "main": "MMM-Astrology.js",
   "dependencies": {
+    "fs": "^0.0.1-security",
+    "request": "^2.79.0",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {},
