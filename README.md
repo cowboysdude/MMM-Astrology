@@ -13,6 +13,14 @@ Go to:
 ~MagicMirror/modules/MMM-Astrolgy
 Run:  npm install
 
+## Configuration options
+
+The following properties can be configured:
+
+| Option | Description
+| --- | ---
+| `displayTitle` | Shows or hides the title.  <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`
+
 Go to:
 Config.js -- Example config...
     [MUST follow the instructions.  I have NO checks in there yet to convert text so it's up to you to enter it correctly!]
