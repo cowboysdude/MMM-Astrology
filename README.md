@@ -5,33 +5,33 @@ Instructions:
 
 Terminal Window instructions:
 
-Go to:
-~MagicMirror/modules
-git clone "https://github.com/cowboysdude/MMM-Astrology"
+1. cd ~/MagicMirror/modules
+1. git clone "https://github.com/cowboysdude/MMM-Astrology"
+1. cd ~/MagicMirror/modules/MMM-Astrology
+1. npm install
 
-Go to:
-~MagicMirror/modules/MMM-Astrolgy
-Run:  npm install
+## Configuration options
 
-Go to:
-Config.js -- Example config...
-    [MUST follow the instructions.  I have NO checks in there yet to convert text so it's up to you to enter it correctly!]
-      Config options:
-      StarSign: Must be entered like this:  Leo, Aries, Pisces, etc.. 
-      hScope: daily, weekly, monthly or yearly {CAUTION:  Yearly horoscopes are VERY large in most cases will take up entire screen!}
-      maxWidth:  default is 400px;  ->  In this config it is set to 350px. 
-      
-      See screen shots...     
+The following properties can be configured:
 
-         {
-			module: 'MMM-Astrology',
-			position: 'top_center',
-			config: {
-				starSign: "Pisces",
-				hScope: "daily",
-				maxWidth: "350px",
-			}
-		},
+| Option | Description
+| --- | ---
+| `starSign` | The star sign to display. Must be capitalized. <br><br> **Example values:** `Leo`, `Aries`, `Pisces`<br>**Default value:** none
+| `hScope` | The type of horoscope to display. <br><br> **Possible values:** `daily`, `weekly`, `monthly`, `yearly`<br>**Default value:** none<br>CAUTION:  Yearly horoscopes are VERY large in most cases will take up entire screen!
+| `maxWidth` | The maximum display width of the module in pixels.<br><br> **Default value:** `400px`
+| `displayTitle` | Shows or hides the title.  <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`
+
+###Example configuration
+[MUST follow the instructions.  I have NO checks in there yet to convert text so it's up to you to enter it correctly!]
+{
+	module: 'MMM-Astrology',
+	position: 'top_center',
+	config: {
+		starSign: "Pisces",
+		hScope: "daily",
+		maxWidth: "350px",
+	}
+},
 
 Start mirror...enjoy!
 
