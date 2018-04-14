@@ -24,7 +24,7 @@ The following properties can be configured:
 | `maxWidth` | The maximum display width of the module in pixels.<br><br> **Default value:** `400px`
 | `displayTitle` | Shows or hides the title.  <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`
 
-###Example configuration
+## Example configuration
 [MUST follow the instructions.  I have NO checks in there yet to convert text so it's up to you to enter it correctly!]
 {
 	module: 'MMM-Astrology',
