@@ -26,6 +26,7 @@ The following properties can be configured:
 
 ## Example configuration
 [MUST follow the instructions.  I have NO checks in there yet to convert text so it's up to you to enter it correctly!]
+```
 {
 	module: 'MMM-Astrology',
 	position: 'top_center',
@@ -35,13 +36,13 @@ The following properties can be configured:
 		maxWidth: "350px",
 	}
 },
-
+```
 Start mirror...enjoy!
 
 Remember colors can be changed in the custom.css file like this:
-
+```
 .MMM-Astrology .header {
 	color: #fff;
 	}
-	
+```	
 	
