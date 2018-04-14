@@ -5,12 +5,12 @@ Instructions:
 
 Terminal Window instructions:
   Go to:
-    ~MagicMirror/modules
-    git clone "https://github.com/cowboysdude/MMM-Astrology"
+       ## ~MagicMirror/modules
+       ##  git clone "https://github.com/cowboysdude/MMM-Astrology"
 
   Go to:
-    ~MagicMirror/modules/MMM-Astrolgy
-    Run:  npm install
+       ##  ~MagicMirror/modules/MMM-Astrolgy
+       ##  Run:  npm install
 
 ## Configuration options
 
