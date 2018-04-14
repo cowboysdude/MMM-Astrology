@@ -4,13 +4,13 @@ Horoscopes for daily, weekly, monthly or yearly!  For the MagicMirror2
 Instructions:
 
 Terminal Window instructions:
-Go to:
-~MagicMirror/modules
-git clone "https://github.com/cowboysdude/MMM-Astrology"
+  Go to:
+    ~MagicMirror/modules
+    git clone "https://github.com/cowboysdude/MMM-Astrology"
 
-Go to:
-~MagicMirror/modules/MMM-Astrolgy
-Run:  npm install
+  Go to:
+    ~MagicMirror/modules/MMM-Astrolgy
+    Run:  npm install
 
 ## Configuration options
 
