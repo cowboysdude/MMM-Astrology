@@ -4,11 +4,13 @@ Horoscopes for daily, weekly, monthly or yearly!  For the MagicMirror2
 Instructions:
 
 Terminal Window instructions:
+Go to:
+~MagicMirror/modules
+git clone "https://github.com/cowboysdude/MMM-Astrology"
 
-1. cd ~/MagicMirror/modules
-1. git clone "https://github.com/cowboysdude/MMM-Astrology"
-1. cd ~/MagicMirror/modules/MMM-Astrology
-1. npm install
+Go to:
+~MagicMirror/modules/MMM-Astrolgy
+Run:  npm install
 
 ## Configuration options
 
@@ -21,8 +23,9 @@ The following properties can be configured:
 | `maxWidth` | The maximum display width of the module in pixels.<br><br> **Default value:** `400px`
 | `displayTitle` | Shows or hides the title.  <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`
 
-###Example configuration
+## Example configuration
 [MUST follow the instructions.  I have NO checks in there yet to convert text so it's up to you to enter it correctly!]
+```
 {
 	module: 'MMM-Astrology',
 	position: 'top_center',
