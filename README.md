@@ -10,7 +10,7 @@ Terminal Window instructions:
          git clone "https://github.com/cowboysdude/MMM-Astrology"  
 
   Go to:  
-         ~MagicMirror/modules/MMM-Astrolgy  
+         ~MagicMirror/modules/MMM-Astrology  
          Run:  npm install  
 
 ## Configuration options
