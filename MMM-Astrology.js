@@ -17,6 +17,7 @@ Module.register("MMM-Astrology", {
 		hScope: "",
 		maxWidth: "400px",
 		fadeSpeed: 7,
+		displayTitle: true,
 	},
 
 	// Define required scripts.
@@ -42,6 +43,7 @@ Module.register("MMM-Astrology", {
 
 		var astro = this.astro;
 		var starSign = this.config.starSign;
+		var displayTitle = this.config.displayTitle;
 
 		var wrapper = document.createElement("div");
 		wrapper.className = "wrapper";
@@ -54,7 +56,7 @@ Module.register("MMM-Astrology", {
 			return wrapper;
 		}
 
-		//var header = document.createElement("header");
+		// var header = document.createElement("header");
 		// header.classList.add("xsmall", "dimmed", "header");
 		// header.innerHTML = astro.title;
 		// wrapper.appendChild(header);
@@ -62,14 +64,16 @@ Module.register("MMM-Astrology", {
 		var top = document.createElement("div");
 		top.classList.add("content");
 
-		var title = document.createElement("span");
-		title.classList.add("xsmall", "bright", "title");
-		title.innerHTML = astro.title;
-		top.appendChild(title);
+		if(displayTitle) {
+			var title = document.createElement("span");
+			title.classList.add("xsmall", "bright", "title");
+			title.innerHTML = astro.title;
+			top.appendChild(title);
 
-		var spacer = document.createElement("p");
-		spacer.innerHTML = '';
-		top.appendChild(spacer);
+			var spacer = document.createElement("p");
+			spacer.innerHTML = '';
+			top.appendChild(spacer);
+		}
 
 		var horoLogo = document.createElement("span");
 		var horoIcon = document.createElement("img");
