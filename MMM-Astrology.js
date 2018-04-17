@@ -18,6 +18,7 @@ Module.register("MMM-Astrology", {
 		maxWidth: "400px",
 		fadeSpeed: 7,
 		displayTitle: true,
+		displayIcon: true,
 	},
 
 	// Define required scripts.
@@ -44,7 +45,7 @@ Module.register("MMM-Astrology", {
 		var astro = this.astro;
 		var starSign = this.config.starSign;
 		var displayTitle = this.config.displayTitle;
-
+		var displayIcon = this.config.displayIcon;
 		var wrapper = document.createElement("div");
 		wrapper.className = "wrapper";
 		wrapper.style.maxWidth = this.config.maxWidth;
@@ -74,14 +75,16 @@ Module.register("MMM-Astrology", {
 			spacer.innerHTML = '';
 			top.appendChild(spacer);
 		}
-
-		var horoLogo = document.createElement("span");
-		var horoIcon = document.createElement("img");
-		horoIcon.src = this.file("icons/" + starSign + ".png");
-		horoIcon.classList.add("imgDesInv");
-		horoLogo.appendChild(horoIcon);
-		top.appendChild(horoLogo);
-
+	
+		if(displayIcon) {
+			var horoLogo = document.createElement("span");
+			var horoIcon = document.createElement("img");
+			horoIcon.src = this.file("icons/" + starSign + ".png");
+			horoIcon.classList.add("imgDesInv");
+			horoLogo.appendChild(horoIcon);
+			top.appendChild(horoLogo);
+		}
+			  
 		var des = document.createElement("p");
 		des.classList.add("small", "bright");
 		des.innerHTML = astro.description;
