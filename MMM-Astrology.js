@@ -86,7 +86,7 @@ Module.register("MMM-Astrology", {
 		}
 			  
 		var des = document.createElement("p");
-		des.classList.add("small", "bright");
+		des.classList.add("small", "bright","desc");
 		des.innerHTML = astro.description;
 		top.appendChild(des);
 
