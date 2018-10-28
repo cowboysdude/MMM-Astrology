@@ -9,10 +9,7 @@ Terminal Window instructions:
         ~MagicMirror/modules  
          git clone "https://github.com/cowboysdude/MMM-Astrology"  
 
-  Go to:  
-         ~MagicMirror/modules/MMM-Astrology  
-         Run:  npm install  
-
+ 
 ## Configuration options
 
 The following properties can be configured:
