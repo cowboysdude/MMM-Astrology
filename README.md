@@ -8,7 +8,19 @@ Terminal Window instructions:
   Go to:  
         ~MagicMirror/modules  
          git clone "https://github.com/cowboysdude/MMM-Astrology"  
+## Example
 
+Daily
+![](examples/daily.JPG) 
+
+Week
+![](examples/week.JPG)
+
+Month
+![](examples/month.JPG) 
+
+Year
+![](examples/year.JPG) 
  
 ## Configuration options
 
