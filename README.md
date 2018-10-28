@@ -17,7 +17,7 @@ The following properties can be configured:
 | Option | Description
 | --- | ---
 | `starSign` | The star sign to display. Must be lower case. <br><br> **Example values:** `leo`, `aries`, `pisces`<br>**Default value:** none
-| `hScope` | The type of horoscope to display. <br><br> **Possible values:** `daily`, `weekly`, `monthly`, `yearly`<br>**Default value:** none<br>CAUTION:  Yearly horoscopes are VERY large in most cases will take up entire screen! 
+| `hScope` | The type of horoscope to display. <br><br> **Possible values:** `daily`, `week`, `month`, `year`<br>**Default value:** none<br>CAUTION:  Yearly horoscopes are VERY large in most cases will take up entire screen! 
 |`tcolor`| color of your horoscope
 
 ## Example configuration
