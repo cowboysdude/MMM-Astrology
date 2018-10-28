@@ -16,11 +16,9 @@ The following properties can be configured:
 
 | Option | Description
 | --- | ---
-| `starSign` | The star sign to display. Must be capitalized. <br><br> **Example values:** `Leo`, `Aries`, `Pisces`<br>**Default value:** none
-| `hScope` | The type of horoscope to display. <br><br> **Possible values:** `daily`, `weekly`, `monthly`, `yearly`<br>**Default value:** none<br>CAUTION:  Yearly horoscopes are VERY large in most cases will take up entire screen!
-| `maxWidth` | The maximum display width of the module in pixels.<br><br> **Default value:** `400px`
-| `displayTitle` | Shows or hides the title.  <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`
-| `displayIcon` | Shows or hides the horoscope icon. <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`
+| `starSign` | The star sign to display. Must be lower case. <br><br> **Example values:** `leo`, `aries`, `pisces`<br>**Default value:** none
+| `hScope` | The type of horoscope to display. <br><br> **Possible values:** `daily`, `weekly`, `monthly`, `yearly`<br>**Default value:** none<br>CAUTION:  Yearly horoscopes are VERY large in most cases will take up entire screen! 
+|`tcolor`| color of your horoscope
 
 ## Example configuration
 [MUST follow the instructions.  I have NO checks in there yet to convert text so it's up to you to enter it correctly!]
@@ -29,9 +27,9 @@ The following properties can be configured:
 	module: 'MMM-Astrology',
 	position: 'top_center',
 	config: {
-		starSign: "Pisces",
+		starSign: "pisces",
 		hScope: "daily",
-		maxWidth: "350px",
+		tcolor: "white"
 	}
 },
 
