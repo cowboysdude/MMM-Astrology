@@ -17,19 +17,16 @@ module.exports = NodeHelper.create({
     },
     
     getAstrology: function(url) {
-    	request({ 
-    	          url: url,
-    	          method: 'GET' 
-    	        }, (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-                parser(body, (err, result)=> {
-                    if(result.hasOwnProperty('rss')){
-                        var result = JSON.parse(JSON.stringify(result.rss.channel[0].item[0]));
-                        this.sendSocketNotification("HOROSCOPE_RESULT", result);
-                    }
-                });
+    	request({
+            url: url,
+            method: 'GET'
+        }, (error, response, body) => {
+            if (!error && response.statusCode == 200) {
+                var result = JSON.parse(body);
+                console.log(body);
+                this.sendSocketNotification('ASTRO_RESULTS', result);
             }
-       });
+        });
     },
 
     //Subclass socketNotificationReceived received.
