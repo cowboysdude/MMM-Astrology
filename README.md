@@ -33,12 +33,4 @@ The following properties can be configured:
 	}
 },
 
-Start mirror...enjoy!
-
-Remember colors can be changed in the custom.css file like this:
-
-.MMM-Astrology .header {
-	color: #fff;
-	}
-	
-	
+Start mirror...enjoy! 
