@@ -32,7 +32,7 @@ h3:first-letter {
     text-transform:capitalize;
 }
 .img {
-	filter: invert(100%);
+	
 	width: 3%;
 	height: 3%;
 }
