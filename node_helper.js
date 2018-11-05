@@ -1,14 +1,11 @@
-/* Magic Mirror
+* Magic Mirror
     * Module: MMM-Astrology
     *
     * By Cowboysdude
     * 
     */
 const NodeHelper = require('node_helper');
-const request = require('request');
-const parser = require('xml2js').parseString;
-const fs = require('fs');
-
+const request = require('request'); 
 
 module.exports = NodeHelper.create({
 	  
@@ -23,7 +20,6 @@ module.exports = NodeHelper.create({
         }, (error, response, body) => {
             if (!error && response.statusCode == 200) {
                 var result = JSON.parse(body);
-                console.log(body);
                 this.sendSocketNotification('ASTRO_RESULTS', result);
             }
         });
@@ -35,4 +31,4 @@ module.exports = NodeHelper.create({
                 this.getAstrology(payload);
             }
          }  
-    });
+    }); 
