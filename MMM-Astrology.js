@@ -17,8 +17,24 @@ Module.register("MMM-Astrology", {
 		hScope: "",
 		maxWidth: "400px",
 		fadeSpeed: 7,
-		displayTitle: true,
-	},
+        tcolor: "white",
+
+        sign : {
+		"leo":"Leo",
+		"capricorn":"Capricorn",
+		"aquarius":"Aquarius",
+		"pisces":"Pisces",
+		"aries":"Aries",
+		"taurus":"Taurus",
+		"gemini":"Gemini",
+		"cancer":"Cancer",
+		"virgo":"Virgo",
+		"libra":"Libra",
+		"scorpio":"Scorpio",
+		"sagittarius":"Sagittarius",
+		"ophiuchus":"Ophiuchus",
+ 		}
+	  },
 
 	// Define required scripts.
 	getScripts: function() {
@@ -42,9 +58,13 @@ Module.register("MMM-Astrology", {
 	getDom: function() {
 
 		var astro = this.astro;
-		var starSign = this.config.starSign;
-		var displayTitle = this.config.displayTitle;
 
+		var starSign = this.config.starSign;
+
+
+
+		var displayTitle = this.config.displayTitle;
+		var displayIcon = this.config.displayIcon;
 		var wrapper = document.createElement("div");
 		wrapper.className = "wrapper";
 		wrapper.style.maxWidth = this.config.maxWidth;
@@ -55,39 +75,36 @@ Module.register("MMM-Astrology", {
 			wrapper.className = "bright light small";
 			return wrapper;
 		}
+            var starSign = this.config.sign[astro.sunsign];
 
-		// var header = document.createElement("header");
-		// header.classList.add("xsmall", "dimmed", "header");
-		// header.innerHTML = astro.title;
-		// wrapper.appendChild(header);
+			var ssign =  document.createElement("div");
+			ssign.style.color = this.config.scolor;
+			//ssign.setAttribute('style','margin-bottom: -50px');
+			ssign.innerHTML = "<img src = modules/MMM-Astrology/icons/1/"+starSign+".svg width=10% height=10%> " + starSign;
+			wrapper.appendChild(ssign);
 
-		var top = document.createElement("div");
-		top.classList.add("content");
+			var tcolor = this.config.tcolor;
 
-		if(displayTitle) {
-			var title = document.createElement("span");
+			var title = document.createElement("div");
 			title.classList.add("xsmall", "bright", "title");
-			title.innerHTML = astro.title;
-			top.appendChild(title);
-
-			var spacer = document.createElement("p");
-			spacer.innerHTML = '';
-			top.appendChild(spacer);
-		}
-
-		var horoLogo = document.createElement("span");
-		var horoIcon = document.createElement("img");
-		horoIcon.src = this.file("icons/" + starSign + ".png");
-		horoIcon.classList.add("imgDesInv");
-		horoLogo.appendChild(horoIcon);
-		top.appendChild(horoLogo);
+			title.style.color = tcolor;
+			title.setAttribute('style','margin-top:0; padding-top:0; float: left');
+			if (this.config.hScope == "daily"){
+			title.innerHTML =   "<br>Daily Horoscope for Today";//+ moment(astro.date).format("MM-DD-YYYY");
+			} else if (this.config.hScope == "week"){
+			title.innerHTML =   "<br>Horoscope for "+astro.week;
+			} else if (this.config.hScope == "month") {
+			title.innerHTML =   "<br>Horoscope for "+ moment(astro.month).format('MMMM YYYY');	
+			} else {
+			title.innerHTML =   "<br>Horoscope for "+astro.year;
+			}
+			wrapper.appendChild(title);
 
 		var des = document.createElement("p");
-		des.classList.add("small", "bright");
-		des.innerHTML = astro.description;
-		top.appendChild(des);
+		des.classList.add("small", "bright","desc");
+		des.innerHTML = "<br>"+astro.horoscope;
+		wrapper.appendChild(des);
 
-		wrapper.appendChild(top);
 		return wrapper;
 	},
 
@@ -98,11 +115,13 @@ Module.register("MMM-Astrology", {
 		var newSign = this.config.starSign;
 
 		if (hType == "daily") {
-			url = "http://www.findyourfate.com/rss/dailyhoroscope-feed.php?sign="+ this.config.starSign +"&id=45";
-		} else if (hType == "weekly") {
-			url = "http://www.findyourfate.com/rss/"+ hType +"-horoscope-feed.php?sign="+ this.config.starSign +"&id=45";
-		} else if(hType == "monthly" || hType == "yearly") {
-			url = "http://www.findyourfate.com/rss/"+ hType +"-horoscope.asp?sign="+ this.config.starSign +"&id=45";
+			url = "http://horoscope-api.herokuapp.com/horoscope/today/"+ this.config.starSign;
+		} else if (hType == "week") {
+			url = "http://horoscope-api.herokuapp.com/horoscope/week/"+ this.config.starSign;
+		} else if(hType == "month" || hType == "yearly") {
+			url = "http://horoscope-api.herokuapp.com/horoscope/month/"+ this.config.starSign;
+		}  else if(hType == "year" || hType == "yearly") {
+			url = "http://horoscope-api.herokuapp.com/horoscope/year/"+ this.config.starSign;
 		}
 		else {
 			console.log("Error: Can't get horoscope URL" + response.statusCode);
@@ -113,6 +132,7 @@ Module.register("MMM-Astrology", {
 	processAstrology: function(data) {
 		this.today = data.Today;
 		this.astro = data;
+		console.log(this.astro);
 		this.loaded = true;
 	},
 
@@ -128,7 +148,7 @@ Module.register("MMM-Astrology", {
 	},
 
 	socketNotificationReceived: function(notification, payload) {
-		if (notification === "HOROSCOPE_RESULT") {
+		if (notification === "ASTRO_RESULTS") {
 			this.processAstrology(payload);
 			this.updateDom(this.config.animationSpeed);
 		}

@@ -1,50 +1,38 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald');
-
-
-.MMM-Astrology .header {
-	
-	font-family: 'Oswald', sans-serif;
-	font-size: 14px;
-	color: #94e7e9;
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+ 
+.MMM-Astrology {
+	width: 75%;
 }
-.MMM-Astrology .content {
-  width: 100%;
+ 
+.MMM-Astrology .content { 
   background-position: 11px 0;
   background-repeat: no-repeat;
   color: #fe0127;
 }
 .MMM-Astrology .title {
-	font-family: 'Oswald', sans-serif;
-	color: #d8d86d;
-}
-.MMM-Astrology .imgDes {
-  width: 16%;
-  height: 16%;
-  margin-left: 5px;
-  margin-right: 5px;
-  overflow: hidden;
-  float: left;
-}
-.MMM-Astrology .imgDesInv {
-  width: 16%;
-  height: 16%;
-  margin-left: 5px;
-  margin-right: 5px;
-  overflow: hidden;
-  float: left;
-  color: #fff;
-   -webkit-filter: invert(100%);
-    filter: invert(100%);
+	font-family: 'Titillium Web', sans-serif;
+	color: #d8d86d; 
+	text-align: center;
+	margin-left: auto;
+    margin-right: auto;
+	line-height: 80%;
 }
 .MMM-Astrology .wrapper{
 	text-align: justify;
 }
 
-.MMM-Astrology .imgDes p {
-  font-size: 12px;
-  text-align: left;
+.MMM-Astrology .desc {
+	font-family: 'Titillium Web', sans-serif; 
+	font-size: 14px;
+    line-height: 90%;
+	text-align: left;
   padding-bottom: 15px;
 }
 h3:first-letter {
     text-transform:capitalize;
+}
+.img {
+	
+	width: 3%;
+	height: 3%;
 }
