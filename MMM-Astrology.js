@@ -2,7 +2,7 @@
 * Module: MMM-Astrology
 *
 * By cowboysdude
-* 
+*
 */
 
 Module.register("MMM-Astrology", {
@@ -50,7 +50,7 @@ Module.register("MMM-Astrology", {
 		wrapper.style.maxWidth = this.config.maxWidth;
 
 		if (!this.loaded) {
-			wrapper.classList.add("wrapper"); 	 
+			wrapper.classList.add("wrapper");
 			wrapper.innerHTML = "Forecasting ...";
 			wrapper.className = "bright light small";
 			return wrapper;
@@ -60,7 +60,7 @@ Module.register("MMM-Astrology", {
 		// header.classList.add("xsmall", "dimmed", "header");
 		// header.innerHTML = astro.title;
 		// wrapper.appendChild(header);
-		
+
 		var top = document.createElement("div");
 		top.classList.add("content");
 
@@ -105,7 +105,7 @@ Module.register("MMM-Astrology", {
 			url = "http://www.findyourfate.com/rss/"+ hType +"-horoscope.asp?sign="+ this.config.starSign +"&id=45";
 		}
 		else {
-			console.log("Error can't get Horoscope url" + response.statusCode);
+			console.log("Error: Can't get horoscope URL" + response.statusCode);
 		}
 		return url;
 	},
