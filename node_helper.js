@@ -1,4 +1,4 @@
-* Magic Mirror
+   /* Magic Mirror
     * Module: MMM-Astrology
     *
     * By Cowboysdude
