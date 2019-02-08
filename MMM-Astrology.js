@@ -2,7 +2,7 @@
 * Module: MMM-Astrology
 *
 * By cowboysdude
-* 
+*
 */
 
 Module.register("MMM-Astrology", {
@@ -58,11 +58,11 @@ Module.register("MMM-Astrology", {
 	getDom: function() {
 
 		var astro = this.astro;
-		
+
 		var starSign = this.config.starSign;
-		
-	 
-		
+
+
+
 		var displayTitle = this.config.displayTitle;
 		var displayIcon = this.config.displayIcon;
 		var wrapper = document.createElement("div");
@@ -70,21 +70,21 @@ Module.register("MMM-Astrology", {
 		wrapper.style.maxWidth = this.config.maxWidth;
 
 		if (!this.loaded) {
-			wrapper.classList.add("wrapper"); 	 
+			wrapper.classList.add("wrapper");
 			wrapper.innerHTML = "Forecasting ...";
 			wrapper.className = "bright light small";
 			return wrapper;
 		}
             var starSign = this.config.sign[astro.sunsign];
-		    
+
 			var ssign =  document.createElement("div");
 			ssign.style.color = this.config.scolor;
 			//ssign.setAttribute('style','margin-bottom: -50px');
 			ssign.innerHTML = "<img src = modules/MMM-Astrology/icons/1/"+starSign+".svg width=10% height=10%> " + starSign;
-			wrapper.appendChild(ssign); 
-			 
-			var tcolor = this.config.tcolor; 
-			
+			wrapper.appendChild(ssign);
+
+			var tcolor = this.config.tcolor;
+
 			var title = document.createElement("div");
 			title.classList.add("xsmall", "bright", "title");
 			title.style.color = tcolor;
@@ -92,19 +92,19 @@ Module.register("MMM-Astrology", {
 			if (this.config.hScope == "daily"){
 			title.innerHTML =   "<br>Daily Horoscope for Today";//+ moment(astro.date).format("MM-DD-YYYY");
 			} else if (this.config.hScope == "week"){
-			title.innerHTML =   "<br>Horoscope for "+astro.week;	
+			title.innerHTML =   "<br>Horoscope for "+astro.week;
 			} else if (this.config.hScope == "month") {
 			title.innerHTML =   "<br>Horoscope for "+ moment(astro.month).format('MMMM YYYY');	
 			} else {
-			title.innerHTML =   "<br>Horoscope for "+astro.year;	
+			title.innerHTML =   "<br>Horoscope for "+astro.year;
 			}
 			wrapper.appendChild(title);
-			  
+
 		var des = document.createElement("p");
 		des.classList.add("small", "bright","desc");
 		des.innerHTML = "<br>"+astro.horoscope;
 		wrapper.appendChild(des);
-		 
+
 		return wrapper;
 	},
 
@@ -124,7 +124,7 @@ Module.register("MMM-Astrology", {
 			url = "http://horoscope-api.herokuapp.com/horoscope/year/"+ this.config.starSign;
 		}
 		else {
-			console.log("Error can't get Horoscope url" + response.statusCode);
+			console.log("Error: Can't get horoscope URL" + response.statusCode);
 		}
 		return url;
 	},
