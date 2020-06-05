@@ -35,14 +35,18 @@ The following properties can be configured:
 ## Example configuration
 [MUST follow the instructions.  I have NO checks in there yet to convert text so it's up to you to enter it correctly!]
 ```
+added possibility to show different horoscopes with a notification of next and previous
+needs an array on config
+
 {
-	module: 'MMM-Astrology',
-	position: 'top_center',
-	config: {
-		starSign: "pisces",
-		hScope: "daily",
-		tcolor: "white"
-	}
-},
+            module: 'MMM-Astrology',
+            disabled: false,
+            position: 'middle_center',
+            config: {
+                starSigns: ["scorpio","aquarius"],
+                hScope: "daily",
+                tcolor: "white"
+            }
+        },
 
 Start mirror...enjoy! 
