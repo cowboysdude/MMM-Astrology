@@ -13,7 +13,8 @@ Module.register("MMM-Astrology", {
 		animationSpeed: 10,
 		initialLoadDelay: 875, // 0 seconds delay
 		retryDelay: 1500,
-		starSign: "",
+		starSigns: ["scorpio","aquarius"],
+        starSign: "",
 		hScope: "",
 		maxWidth: "400px",
 		fadeSpeed: 7,
@@ -50,15 +51,21 @@ Module.register("MMM-Astrology", {
 		Log.info("Starting module: " + this.name);
 
 		// Set locale.
+        this.sign_position = 0;
+        this.config.starSign = this.config.starSigns[this.sign_position];
+        this.show_signs = this.config.starSigns.map(function(v) {
+          return v.toLowerCase();
+        });
 		this.url = this.getUrl();
 		this.today = "";
+        
 		this.scheduleUpdate();
 	},
 
 	getDom: function() {
 
 		var astro = this.astro;
-
+        
 		var starSign = this.config.starSign;
 
 
@@ -154,5 +161,41 @@ Module.register("MMM-Astrology", {
 		}
 		this.updateDom(this.config.initialLoadDelay);
 	},
+    
+    notificationReceived: function (noti, payload) {
+        
+        
+        if (noti == "HOROSCOPE") {
+          //this.sendNotification("SHOW_ALERT", {title: "Please wait", message: "HOROSCOPE"+payload, timer: 1000});
+          if(payload.command=="next"){
+            
+            this.sign_position= this.sign_position+1
+            if(this.sign_position >= this.show_signs.length) 
+            {
+                this.sign_position = 0;
+            }
+            //this.sendNotification("SHOW_ALERT", {title: "Please wait", message: "HOROSCOPE"+this.sign_position, timer: 1000});
+            
+            this.config.starSign = this.config.starSigns[this.sign_position];
+            this.url = this.getUrl();
+            this.getAstrology();
+            return;
+          }
+          if(payload.command=="previous"){
+            
+            this.sign_position= this.sign_position-1
+            
+            if(this.sign_position <= 0) 
+            {
+                this.sign_position = this.show_signs.length-1;
+            }
+            //this.sendNotification("SHOW_ALERT", {title: "Please wait", message: "HOROSCOPE"+this.sign_position, timer: 1000});
+            this.config.starSign = this.config.starSigns[this.sign_position];
+            this.url = this.getUrl();
+            this.getAstrology();
+            return;
+          }
+        }
+    },
 
 });
