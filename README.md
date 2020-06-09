@@ -50,3 +50,15 @@ needs an array on config
         },
 
 Start mirror...enjoy! 
+
+additions rdr
+
+need to install 
+sudo apt-get install translate-shell
+
+trans -R the languages
+trans :it 'hello how are you?' from english to italian
+
+added to config
+translation_languages: ["it"], //will translate to language if left blank will just report to en
+starSigns: ["scorpio","aquarius"], //with a 
