@@ -17,8 +17,13 @@
     margin-right: auto;
 	line-height: 80%;
 }
+.MMM-Astrology .title_image {
+	text-align: right;
+}
+
 .MMM-Astrology .wrapper{
 	text-align: justify;
+    /* background: var(--backg_transp_modules1); */
 }
 
 .MMM-Astrology .desc {
