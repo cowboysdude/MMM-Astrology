@@ -7,7 +7,7 @@ Terminal Window instructions:
 
   Go to:  
         ~MagicMirror/modules  
-         git clone "https://github.com/cowboysdude/MMM-Astrology"  
+         git clone "https://github.com/rafhtl/MMM-Astrology.git"  
 ## Example
 
 Daily
