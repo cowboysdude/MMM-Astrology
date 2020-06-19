@@ -1,7 +1,7 @@
 /* Magic Mirror
 * Module: MMM-Astrology
 *
-* By cowboysdude/ revisoned RDR
+* By cowboysdude  //revision RDR
 *
 */
 
