@@ -1,4 +1,4 @@
-    /* Magic Mirror
+   /* Magic Mirror
     * Module: MMM-Astrology
     *
     * By Cowboysdude //revision RDR
@@ -35,7 +35,7 @@ module.exports = NodeHelper.create({
                         if(self.thehoroscope != result.horoscope){
                             self.thehoroscope = result.horoscope;
                                 
-                            var cmd = "trans "+'-b'+" "+":"+this.config.translation_languages[0]+" "+"'"+result.horoscope+"'";
+                            var cmd = "trans "+'-b'+" "+":"+this.config.translation_languages[0]+' "'+result.horoscope+'"';
                             //thereturnvalue = self.execShellCommand(cmd);
                             
                             self.execShell(cmd,result,function(thereturnvalue,theresult){
@@ -134,6 +134,6 @@ module.exports = NodeHelper.create({
         }
     
 });
- 
+
     
     
